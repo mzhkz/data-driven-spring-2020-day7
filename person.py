@@ -42,9 +42,10 @@ class Person:
 
         result = []
 
-        for h in range(0, 23): #0時から23時までをまとめて算出
-            v_active = self.calculation(weigh = 59, s1 = m_step[60*h:60*(h+1)], s2 = o_step[60*h:60*(h+1)])
+        for h in range(0, 24): #0時から23時までをまとめて算出
+            v_active = self.calculation(weigh = 60, s1 = m_step[60*h:60*(h+1)], s2 = o_step[60*h:60*(h+1)])
             result.append(v_active)
+            print("{0}day {1}h = {2} の行動指数 {3}".format(day, h, o_step[0][0], v_active))
 
         return result
 
@@ -53,34 +54,25 @@ class Person:
     #活動量検知方法、類似度による指数算出および、非類似度の算出の値を返す
     def calculation(self, weigh, s1, s2):
 
-        # print("#2 {0}, {1}".format(s1[0][0], s2[0][0]))
-
         # シグマ計算 Σt=T,t+w (aT-bT)**2
         numerator = sum( [(s1[k1][2] - s2[k1][2])**2 for k1 in range(0, weigh)] ) # h = (time + weigh) - time
         
         # シグマ計算 Σt=T,t+w (aT**2 + bT**2)
         denominator = sum( [(s1[k2][2]**2 + s2[k2][2]**2) for k2 in range(0, weigh)] ) # h = (time + weigh) - time
-
+        
+        
+        # print("")
+        # print("{0} ~ {1}".format(s1[0][1], s1[59][1]))
+        # print("#2 {0}, {1}".format(s1[0][0], s2[0][0]))
+        # print(s1[0][2],s2[0][2])
         # print((s1[0][2] - s2[0][2])**2)
         # print((s1[0][2]**2 + s2[0][2]**2))
-
         # print("{0} / {1} ({2})".format(numerator, denominator, numerator > denominator))
 
-        if denominator > 0:
+        if denominator >= 5500: #母数が5500以上
             return numerator / denominator
         else:
-            return -1
-
-        # return (numerator / denominator ,1)[denominator > 0]
+            return 2
 
 
     
-
-
-
-
-#Step per a minute
-# class Step:
-#     day = 1
-#     time = 0
-#     step = 

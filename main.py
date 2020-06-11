@@ -26,7 +26,8 @@ persons = [
     if os.path.isfile(os.path.join(path, p)) # if type is file
     ]
 
-
-# print([p.steps[0][1] for p in persons])
+print("")
+print("")
+print("{0}さん and {1}さん".format(persons[0].name, persons[1].name))
 
 print(persons[0].compete(other = persons[1], day = 0))
