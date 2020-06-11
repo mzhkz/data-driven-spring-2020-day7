@@ -6,6 +6,7 @@ class Person:
     name = ""
     file = ""
     steps = [0]
+    relation = []
 
     # クラスコンストラクタ　初期化
     def __init__(self, _name, _file):
@@ -46,7 +47,8 @@ class Person:
 
         # print("#12 {0}, {1}".format(len(m_step), len(o_step)))
 
-        result = []
+        result = [] # 24時間分の結果を収納する
+        p_judge = 0 # 非類似度をベースとしたつながりポイントの処理用
 
         for h in range(0, 24): #0時から23時までをまとめて算出
             v_active = self.calculation(weigh = 60, s1 = m_step[60*h:60*(h+1)], s2 = o_step[60*h:60*(h+1)])
