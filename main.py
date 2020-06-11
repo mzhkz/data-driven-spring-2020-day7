@@ -39,7 +39,7 @@ persons = [
     person.Person(p.replace(".csv", ""), path+"/"+p) # convert to person object.
     for p in files # targets to convert
     if os.path.isfile(os.path.join(path, p)) # if type is file
-    ]
+]
 
 
 # イテレータからコンビネーションを計算
@@ -47,6 +47,7 @@ store = store.Store(persons)
 store.combinate()
 
 
+#各ペアの行動類似度を計算し、指定された条件とともにポイントを追加
 for p in store.t_pairs:
     for d in range(0, 17):
          results = p[0].compete(other = p[1], day = d)
