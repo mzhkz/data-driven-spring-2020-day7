@@ -34,5 +34,6 @@ class Store:
 
             if sort_p1[0] == sort_p2[0] and sort_p1[1] == sort_p2[1]:
                 pair[2] += val #変数を置き換え
+                print("変数を追加 合計{}".format(pair[2]))
 
     

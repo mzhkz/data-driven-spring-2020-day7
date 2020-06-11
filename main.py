@@ -48,11 +48,11 @@ store.combinate()
 
 
 for p in store.t_pairs:
-    results = p[0].compete(other = p[1], day = 0)
-     
-    for r in results:
-        if (r <= 0.05):
-            store.add_and_update(p1 = p[0], p2 = p[1], val = 1) #仲良しポイントを追加
+    for d in range(0, 17):
+         results = p[0].compete(other = p[1], day = d)
+         for r in results:
+             if (r <= 0.05):
+                 store.add_and_update(p1 = p[0], p2 = p[1], val = 1) #仲良しポイントを追加
     
 
 

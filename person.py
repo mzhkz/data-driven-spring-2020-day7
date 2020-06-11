@@ -54,7 +54,7 @@ class Person:
             v_active = self.calculation(weigh = c_weight, s1 = m_step[c_weight*h:c_weight*(h+1)], s2 = o_step[c_weight*h:c_weight*(h+1)])
             result.append(v_active)
             # print("{0}日目 {1}時 = {2} の行動指数 {3}".format(day, h, m_step[0][0], v_active))
-            
+
         return result
 
 
@@ -67,7 +67,6 @@ class Person:
         
         # シグマ計算 Σt=T,t+w (aT**2 + bT**2)
         denominator = sum( [(s1[k2][2]**2 + s2[k2][2]**2) for k2 in range(0, weigh)] ) # h = (time + weigh) - time
-        
 
         if denominator >= 5500: #母数が5500以上
             return numerator / denominator
