@@ -27,6 +27,6 @@ persons = [
     ]
 
 
-print([p.steps[0][1] for p in persons])
+# print([p.steps[0][1] for p in persons])
 
-# print(persons[0].compete(persons[1]))
+print(persons[0].compete(other = persons[1], day = 0))
