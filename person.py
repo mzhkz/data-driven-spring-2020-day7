@@ -27,6 +27,12 @@ class Person:
 
         self.steps = [[step[0], step[1], int(step[2])] for step in list(f)[1:]]
 
+        if len(self.steps) < 24480:
+            diff = 24480 - len(self.steps)
+            self.steps[0:0] = [["未登録", "データなし", 0] for i in range(0, diff)]
+            print("データの付け足しを行いました。{0} に {1}個のデータを追加".format(self.name, diff))
+        
+
 
 
     # 他人と歩数を比べ、動向検知手法による類似度を計算
@@ -45,7 +51,7 @@ class Person:
         for h in range(0, 24): #0時から23時までをまとめて算出
             v_active = self.calculation(weigh = 60, s1 = m_step[60*h:60*(h+1)], s2 = o_step[60*h:60*(h+1)])
             result.append(v_active)
-            print("{0}day {1}h = {2} の行動指数 {3}".format(day, h, o_step[0][0], v_active))
+            print("{0}日目 {1}時 = {2} の行動指数 {3}".format(day, h, m_step[0][0], v_active))
 
         return result
 
@@ -60,14 +66,6 @@ class Person:
         # シグマ計算 Σt=T,t+w (aT**2 + bT**2)
         denominator = sum( [(s1[k2][2]**2 + s2[k2][2]**2) for k2 in range(0, weigh)] ) # h = (time + weigh) - time
         
-        
-        # print("")
-        # print("{0} ~ {1}".format(s1[0][1], s1[59][1]))
-        # print("#2 {0}, {1}".format(s1[0][0], s2[0][0]))
-        # print(s1[0][2],s2[0][2])
-        # print((s1[0][2] - s2[0][2])**2)
-        # print((s1[0][2]**2 + s2[0][2]**2))
-        # print("{0} / {1} ({2})".format(numerator, denominator, numerator > denominator))
 
         if denominator >= 5500: #母数が5500以上
             return numerator / denominator
