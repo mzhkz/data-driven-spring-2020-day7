@@ -13,6 +13,7 @@ import math
 import os
 
 import person
+import store
 
 
 # announce
@@ -42,16 +43,17 @@ persons = [
 
 
 # イテレータからコンビネーションを計算
-c_pair = combinations(persons, 2)
-c_pair_list = list(c_pair)
-print("組合せの数：{}".format(len(c_pair_list)))
+store = store.Store(persons)
+store.combinate()
 
 
-total_result = []
-
-for p in c_pair_list:
-    r_com = p[0].compete(other = p[1], day = 0)
-    total_result.append(r_com)
+for p in store.t_pairs:
+    results = p[0].compete(other = p[1], day = 0)
+     
+    for r in results:
+        if (r <= 0.05):
+            store.add_and_update(p1 = p[0], p2 = p[1], val = 1) #仲良しポイントを追加
+    
 
 
 #処理終了
