@@ -4,8 +4,10 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from itertools import combinations
 
 import statistics as statics
+import copy
 import datetime
 import math
 import os
@@ -38,12 +40,19 @@ persons = [
     if os.path.isfile(os.path.join(path, p)) # if type is file
     ]
 
-# print([(x.name, len(x.steps)) for x in persons])
-print("")
-print("")
-print("{0}さん and {1}さん".format(persons[5].name, persons[6].name))
 
-print(persons[0].compete(other = persons[1], day = 2))
+# イテレータからコンビネーションを計算
+c_pair = combinations(persons, 2)
+c_pair_list = list(c_pair)
+print("組合せの数：{}".format(len(c_pair_list)))
+
+
+total_result = []
+
+for p in c_pair_list:
+    r_com = p[0].compete(other = p[1], day = 0)
+    total_result.append(r_com)
+
 
 #処理終了
 print("-----------------------------------------------") 

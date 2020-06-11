@@ -31,7 +31,7 @@ class Person:
         if len(self.steps) < 24480:
             diff = 24480 - len(self.steps)
             self.steps[0:0] = [["未登録", "データなし", 0] for i in range(0, diff)]
-            print("データの付け足しを行いました。{0} に {1}個のデータを追加".format(self.name, diff))
+            print("データの付け足しを行いました。{0} に {1}個のデータを追加 計{2}".format(self.name, diff, len(self.steps)))
         
 
 
