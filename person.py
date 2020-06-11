@@ -4,12 +4,15 @@ import csv
 class Person:
     name = ""
     file = ""
-    steps = []
+    steps = [0]
 
     # クラスコンストラクタ　初期化
     def __init__(self, _name, _file):
         self.name = _name
         self.file = _file
+
+        self.interpret()
+
 
     # CSVを解釈
     def interpret(self):
@@ -21,7 +24,8 @@ class Person:
          quotechar='"', 
          skipinitialspace=True)
 
-        self.steps = [[step[0], step[1], step[2]] for step in f]
+        self.steps = [[step[0], step[1], step[2]] for step in f][1:]
+
 
     # 他人と歩数を比べ、動向検知手法による類似度を計算
     def compete(self, other):
