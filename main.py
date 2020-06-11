@@ -26,3 +26,5 @@ persons = [
     ]
 
 print([p.name for p in persons])
+
+print(persons[0].compete(persons[1]))
