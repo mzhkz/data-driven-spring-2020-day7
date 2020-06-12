@@ -17,6 +17,7 @@ import store
 import save
 import analyze
 import compete
+import table
 
 
 # announce
@@ -63,6 +64,7 @@ save.save_data(store.t_pairs)
 
 # analyze.describe(persons[0], day = 7)
 # compete.describe(p1 = persons[0], p2 = persons[1], day = 8)
+table.describe(pairs=store.t_pairs)
 
 #処理終了
 finished_date = datetime.datetime.today()

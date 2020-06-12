@@ -9,3 +9,5 @@ for i in range(0, len(a)-2):
     # シグマ計算 Σt=T,t+w (aT**2 + bT**2)
     denominator = sum( [(a[k2]**2 + b[k2]**2) for k2 in range(i, i+3)] ) # h = (time + weigh) - time
     print(numerator / denominator)
+
+print(int("010"))
