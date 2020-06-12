@@ -1,5 +1,7 @@
 import csv
 import pprint
+import store
+import copy
 
 
 class Person:
@@ -37,26 +39,30 @@ class Person:
 
 
     # 他人と歩数を比べ、動向検知手法による類似度を計算
-    def compete(self, other, day):
-
+    def compete(self, other):
         # print("#0 {0}, {1}".format(len(self.steps), len(other.steps)))
 
-        #1440分 = 1 DAY
-        m_step = self.steps[1440*day:1440*(day+1)] #指定日の歩数をくり抜き
-        o_step = other.steps[1440*day:1440*(day+1)] #指定日の歩数をくり抜き
+        m_step = self.steps.copy().tolist()
+        o_step = other.steps.copy().tolist()
 
-        # print("#12 {0}, {1}".format(len(m_step), len(o_step)))
+        p_flag = 0
 
-        result = [] # 24時間分の結果を収納する
-
-        for h in range(0, 24): #0時から23時までをまとめて算出
+        for m in range(0, len(self.steps) - 59): #0時から23時までをまとめて算出
             c_weight = 60
-            v_active = self.calculation(weigh = c_weight, s1 = m_step[c_weight*h:c_weight*(h+1)], s2 = o_step[c_weight*h:c_weight*(h+1)])
-            result.append(v_active)
-            # print("{0}日目 {1}時 = {2} の行動指数 {3}".format(day, h, m_step[0][0], v_active))
+            s1 = m_step[m:m+60].copy().tolist()
+            s2 = o_step[m:m+60].copy().tolist()
 
-        return result
 
+            v_active = self.calculation(weigh = c_weight, s1 = s1, s2 = s2)
+            # print("{0}分目 = {1} の行動指数 {2}".format(m, m_step[0][0], v_active))
+
+            if v_active <= 0.05:
+                p_flag += 1 #ポイント追加
+                
+                if p_flag <= 15: #15分以上だとさらに追加
+                    store.add_and_update(p1 = self, p2 = other, val = 1) #仲良しポイントを追加
+            else:
+                p_flag = 0 #初期化
 
 
     #活動量検知方法、類似度による指数算出および、非類似度の算出の値を返す

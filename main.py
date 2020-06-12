@@ -40,21 +40,18 @@ persons = [
     if os.path.isfile(os.path.join(path, p)) # if type is file
 ]
 
-# イテレータからコンビネーションを計算
-store = store.Store(persons)
+# イテレータからコンビネーションを計算 
+store.i_states(person = persons)
 store.combinate()
 
 
+proc_count = 0
 #各ペアの行動類似度を計算し、指定された条件とともにポイントを追加
 for p in store.t_pairs:
+   p[0].compete(other = p[1])
 
-    for d in range(0, 17):
-         results = p[0].compete(other = p[1], day = d)
-
-         for r in results:
-             if (r <= 0.05):
-                 store.add_and_update(p1 = p[0], p2 = p[1], val = 1) #仲良しポイントを追加
-    
+   proc_count +=1
+   print(proc_count)
 
 
 #処理終了
