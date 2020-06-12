@@ -14,6 +14,7 @@ import os
 
 import person
 import store
+import save
 
 
 # announce
@@ -52,6 +53,9 @@ for p in store.t_pairs:
     print("  {0}ペア目を処理開始..".format(proc_count))
     p[0].compete(other = p[1])
 
+
+#保存
+save.save_data(store.t_pairs)
 
 #処理終了
 finished_date = datetime.datetime.today()

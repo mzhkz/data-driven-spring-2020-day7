@@ -48,6 +48,7 @@ class Person:
         p_flag = 0
 
         for m in range(0, len(self.steps) - 60): #0時から23時までをまとめて算出
+
             c_weight = 60
             s1 = m_step[m:m+60].copy()
             s2 = o_step[m:m+60].copy()
