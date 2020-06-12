@@ -46,23 +46,23 @@ persons = [
 
 
 
-# # イテレータからコンビネーションを計算 
-# store.i_states(person = persons)
-# store.combinate()
+# イテレータからコンビネーションを計算 
+store.i_states(person = persons)
+store.combinate()
 
-# proc_count = 0
-# #各ペアの行動類似度を計算し、指定された条件とともにポイントを追加
-# for p in store.t_pairs:
-#     proc_count +=1
-#     print("  {0}ペア目を処理開始..".format(proc_count))
-#     p[0].compete(other = p[1])
+proc_count = 0
+#各ペアの行動類似度を計算し、指定された条件とともにポイントを追加
+for p in store.t_pairs:
+    proc_count +=1
+    print("  {0}ペア目を処理開始..".format(proc_count))
+    p[0].compete(other = p[1])
 
 
 # #保存
-# save.save_data(store.t_pairs)
+save.save_data(store.t_pairs)
 
 # analyze.describe(persons[0], day = 7)
-compete.describe(p1 = persons[0], p2 = persons[1], day = 7)
+# compete.describe(p1 = persons[0], p2 = persons[1], day = 8)
 
 #処理終了
 finished_date = datetime.datetime.today()
