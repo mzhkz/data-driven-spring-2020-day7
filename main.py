@@ -48,10 +48,9 @@ store.combinate()
 proc_count = 0
 #各ペアの行動類似度を計算し、指定された条件とともにポイントを追加
 for p in store.t_pairs:
-   p[0].compete(other = p[1])
-
-   proc_count +=1
-   print(proc_count)
+    proc_count +=1
+    print("  {0}ペア目を処理開始..".format(proc_count))
+    p[0].compete(other = p[1])
 
 
 #処理終了

@@ -1,5 +1,6 @@
 from itertools import combinations
 import hashlib
+import datetime
 
 t_persons = [] #ユーザー
 t_pairs = [] #ペア一覧
@@ -7,8 +8,9 @@ t_pairs = [] #ペア一覧
 
 def i_states(person):
     global t_persons
-
     t_persons = person
+
+    print("    {}人のデータを読み込みました".format(len(t_persons)))
 
 
 #2組ずつにペア訳を行う
@@ -36,6 +38,8 @@ def add_and_update(p1, p2, val):
 
         if sort_p1[0] == sort_p2[0] and sort_p1[1] == sort_p2[1]:
             pair[2] += val #変数を置き換え
-            print("仲良し度が追加された 合計{}".format(pair[2]))
+            print(".." + 
+                datetime.datetime.today().strftime("%Y/%m/%d %H:%M:%S") 
+                + "  {0} 仲良し度が追加された 合計{1}".format("{0} and {1}".format(p1.name, p2.name) ,pair[2]))
 
     

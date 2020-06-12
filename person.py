@@ -33,7 +33,7 @@ class Person:
         if len(self.steps) < 24480:
             diff = 24480 - len(self.steps)
             self.steps[0:0] = [["未登録", "データなし", 0] for i in range(0, diff)]
-            print("データの付け足しを行いました。{0} に {1}個のデータを追加 計{2}".format(self.name, diff, len(self.steps)))
+            print("　　...データの付け足しを行いました。{0} に {1} 個のデータを追加  = 計{2}".format(self.name, diff, len(self.steps)))
         
 
 
@@ -42,15 +42,15 @@ class Person:
     def compete(self, other):
         # print("#0 {0}, {1}".format(len(self.steps), len(other.steps)))
 
-        m_step = self.steps.copy().tolist()
-        o_step = other.steps.copy().tolist()
+        m_step = self.steps.copy()
+        o_step = other.steps.copy()
 
         p_flag = 0
 
-        for m in range(0, len(self.steps) - 59): #0時から23時までをまとめて算出
+        for m in range(0, len(self.steps) - 60): #0時から23時までをまとめて算出
             c_weight = 60
-            s1 = m_step[m:m+60].copy().tolist()
-            s2 = o_step[m:m+60].copy().tolist()
+            s1 = m_step[m:m+60].copy()
+            s2 = o_step[m:m+60].copy()
 
 
             v_active = self.calculation(weigh = c_weight, s1 = s1, s2 = s2)
