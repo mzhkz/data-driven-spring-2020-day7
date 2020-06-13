@@ -11,6 +11,7 @@ def describe(pairs):
 
     for p in pairs:
         table_vals[n_people(p[0])][n_people(p[1])] = p[2]
+        table_vals[n_people(p[1])][n_people(p[0])] = p[2]
     
     col_labels = names
     row_labels = names

@@ -18,7 +18,7 @@ def describe(p1, p2, day):
 
     p2_left = np.array([p2_i * 9 for p2_i in range(0, len(p2_step_d_1))])
     p2_height = np.array([p2_s for p2_s in p2_step_d_1])
-    ax1.plot(p2_left, p2_height, color="crimson", label='0202')
+    ax1.plot(p2_left, p2_height, color="crimson", label='0102')
 
 
     # グラフデザイン
